@@ -11,25 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Step 2: Set up Python environment
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      # Step 4: Run the model training script to generate the .pkl file
-      - name: Train model and save as .pkl
-        run: |
-          python best_model.py
+      
 
        # Step 5: Upload the trained model to Hugging Face
       - name: Upload model to Hugging Face
@@ -46,7 +28,7 @@ jobs:
               repo_id='Suerz/MLOpsAssignment',
               repo_type='model'
           )
-          "
+          " 
 
   deploy:
     name: Deploy Streamlit App
@@ -54,30 +36,6 @@ jobs:
     needs: build
 
     steps:
-      # Step 1: Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Step 2: Set up Python environment
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-       # Step 4: Download the model artifact from Hugging Face
-      - name: Download model from Hugging Face
-        run: |
-          pip install huggingface_hub
-          python -c "
-          from huggingface_hub import hf_hub_download
-          hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
-          "
-
       # Step 5: Push changes to Hugging Face Space
       - name: Push changes to Hugging Face Space
         env:
