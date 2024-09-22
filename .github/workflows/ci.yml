@@ -46,7 +46,7 @@ jobs:
           pip install huggingface_hub
           python -c "
           from huggingface_hub import hf_hub_download
-          hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
+          hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl', local_dir='.')
           "
       - name: Copy model to repo
         run: |
