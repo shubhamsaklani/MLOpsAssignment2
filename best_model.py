@@ -58,7 +58,7 @@ def main():
 
     # Model interpretation
     print("Interpreting the model...")
-    interpret_model(best_model_finalize)
+    interpret_model(best)
     print("Model interpretation complete.")
 
 if __name__ == "__main__":
