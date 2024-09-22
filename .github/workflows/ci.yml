@@ -75,8 +75,11 @@ jobs:
           pip install huggingface_hub
           python -c "
           from huggingface_hub import hf_hub_download
-          hf_hub_download(repo_id='Suerz/MLOps2', filename='best_model.pkl')
-          "
+          hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
+      
+      - name: #Move model to Space directory
+        run: |
+          mv best_model.pkl https://Suerz:$HUGGINGFACE_TOKEN@huggingface.co/spaces/Suerz/MLOps2 main/  # Change to your Space directory
 
       # Step 5: Push changes to Hugging Face Space
       - name: Configure Git
