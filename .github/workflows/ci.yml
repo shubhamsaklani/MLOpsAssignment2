@@ -83,9 +83,9 @@ jobs:
         env:
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}  
         run: |
-          cd MLOpsAssignment
+          cd MLOps2
           git config --global user.email "shubhamsaklani94@gmail.com"
-          git config --global user.name "Suerz
+          git config --global user.name "Suerz"
           git add .
           git commit -m "Deploy Streamlit app and model"
           git push
