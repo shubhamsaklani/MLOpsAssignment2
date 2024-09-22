@@ -79,7 +79,7 @@ jobs:
       
       - name: #Move model to Space directory
         run: |
-          mv best_model.pkl https://Suerz:$HUGGINGFACE_TOKEN@huggingface.co/spaces/Suerz/MLOps2 main/  # Change to your Space directory
+          mv best_model.pkl MLOps2/ # Change to your Space directory
 
       # Step 5: Push changes to Hugging Face Space
       - name: Configure Git
