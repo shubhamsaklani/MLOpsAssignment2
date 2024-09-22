@@ -47,7 +47,7 @@ jobs:
           python -c "
           from huggingface_hub import hf_hub_download
           hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
-          "
+          
           # Upload the model to your Hugging Face Space
           api = HfApi()
           api.upload_file(
@@ -56,7 +56,7 @@ jobs:
               repo_id='Suerz/MLOps2',  # Replace with your Hugging Face Space repo ID
               repo_type='space'  # Specify that this is a Space
           )
-
+          "
       # Step 5: Push changes to Hugging Face Space
       - name: Configure Git
         run: |
