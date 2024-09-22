@@ -27,7 +27,7 @@ jobs:
       # Step 4: Run the model training script to generate the .pkl file
       - name: Run model training script
         run: |
-          python regression_model_pipeline.py
+          python best_model.py
 
       # Step 5: Run the Streamlit app
       - name: Run Streamlit app
