@@ -51,7 +51,7 @@ jobs:
           # Upload the model to your Hugging Face Space
           api = HfApi()
           api.upload_file(
-              path='best_model.pkl',
+              path_or_fileobj='best_model.pkl',
               path_in_repo='best_model.pkl',  # Path where you want to store the file in your Space
               repo_id='Suerz/MLOps2',  # Replace with your Hugging Face Space repo ID
               repo_type='space'  # Specify that this is a Space
