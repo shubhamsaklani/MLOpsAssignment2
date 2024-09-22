@@ -45,7 +45,7 @@ jobs:
         run: |
           pip install huggingface_hub
           python -c "
-          from huggingface_hub import hf_hub_download
+          from huggingface_hub import hf_hub_download,HfApi
           hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
           
           # Upload the model to your Hugging Face Space
