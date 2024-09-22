@@ -75,7 +75,7 @@ jobs:
           pip install huggingface_hub
           python -c "
           from huggingface_hub import hf_hub_download
-          hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
+          hf_hub_download(repo_id='Suerz/MLOps2', filename='best_model.pkl')
           "
 
       # Step 5: Push changes to Hugging Face Space
