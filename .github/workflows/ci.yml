@@ -89,4 +89,4 @@ jobs:
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}  
         run: |
           git pull --rebase https://Suerz:$HUGGINGFACE_TOKEN@huggingface.co/spaces/Suerz/MLOps2 main || true
-          git push https://Suerz:$HUGGINGFACE_TOKEN@huggingface.co/spaces/Suerz/MLOps2 main
+          git push --force https://Suerz:$HUGGINGFACE_TOKEN@huggingface.co/spaces/Suerz/MLOps2 main
