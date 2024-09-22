@@ -45,18 +45,24 @@ jobs:
         run: |
           pip install huggingface_hub
           python -c "
-          from huggingface_hub import hf_hub_download,HfApi
-          local_path = hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
-          
-          # Upload the model to your Hugging Face Space
-          api = HfApi()
-          api.upload_file(
-              path_or_fileobj=local_path,
-              path_in_repo='best_model.pkl',  # Path where you want to store the file in your Space
-              repo_id='Suerz/MLOps2',  # Replace with your Hugging Face Space repo ID
-              repo_type='space'  # Specify that this is a Space
-          )
+          from huggingface_hub import hf_hub_download
+          hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
           "
+          - name: Copy model to repo
+          run: |
+            cp best_model.pkl ./
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "shubhamsaklani94@gmail.com"
+          git config --global user.email "shubhamsaklani"
+          git add ./best_model.pkl
+          git commit -m "Add best_model.pkl from Hugging Face"
+
+      - name: Push to repository
+        run: |
+          git push origin main
+      
       # Step 5: Push changes to Hugging Face Space
       - name: Configure Git
         run: |
