@@ -31,12 +31,22 @@ jobs:
         run: |
           python best_model.py
 
-      # Step 5: Upload the trained model as an artifact for reuse
-      - name: Upload model artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: trained-model
-          path: best_model.pkl
+       # Step 5: Upload the trained model to Hugging Face
+      - name: Upload model to Hugging Face
+        env:
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}  
+        run: |
+          pip install huggingface_hub
+          python -c "
+          from huggingface_hub import login, upload_file
+          login(token='${{ secrets.HUGGINGFACE_TOKEN }}')
+          upload_file(
+              path_or_fileobj='best_model.pkl',
+              path_in_repo='best_model.pkl',
+              repo_id='Suerz/MLOpsAssignment',
+              repo_type='model'
+          )
+          "
 
   deploy:
     name: Deploy Streamlit App
@@ -59,13 +69,23 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # Step 4: Download the model artifact from the previous job
-      - name: Download model artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: trained-model
-
-      # Step 5: Run the Streamlit app
-      - name: Run Streamlit app
+       # Step 4: Download the model artifact from Hugging Face
+      - name: Download model from Hugging Face
         run: |
-          streamlit run app.py
+          pip install huggingface_hub
+          python -c "
+          from huggingface_hub import hf_hub_download
+          hf_hub_download(repo_id='Suerz/MLOpsAssignment', filename='best_model.pkl')
+          "
+
+      # Step 5: Push changes to Hugging Face Space
+      - name: Push changes to Hugging Face Space
+        env:
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}  
+        run: |
+          cd MLOpsAssignment
+          git config --global user.email "shubhamsaklani94@gmail.com"
+          git config --global user.name "Suerz
+          git add .
+          git commit -m "Deploy Streamlit app and model"
+          git push
