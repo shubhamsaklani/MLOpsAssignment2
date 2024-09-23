@@ -16,7 +16,7 @@ st.title("Insurance Prediction App")
 # Define the model file path
 model_file_path = "best_model.pkl"
 
-# Check if the model file already exists, if not, download it
+# Check if the model file already exists, if not, download it.
 if not os.path.exists(model_file_path):
     with st.spinner("Downloading model..."):
         download_model("https://huggingface.co/Suerz/MLOpsAssignment/resolve/main/best_model_v1.pkl", model_file_path)
